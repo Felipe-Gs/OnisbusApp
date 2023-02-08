@@ -53,7 +53,7 @@ router.get('/listar', (req, res) => {
             console.error(err.stack);
             res.status(500).send('Erro ao listar estudantes');
             } else {
-              console.table(result.rows)
+              // console.table(result.rows)
               res.send(result.rows);
             }
         });   
@@ -97,7 +97,7 @@ router.post('/login', (req, res) => {
         res.status(500).send('Erro ao fazer login');
       } else if (result.rows.length > 0) {
         // Usuário encontrado, retornar alguma informação, como um token
-        res.send({ id, nome, email });
+        res.send( {estudante: result.rows[0]} );
       } else {
         // Usuário não encontrado, retornar mensagem de erro
         res.status(401).send({ success: false, message: 'Usuário ou senha inválidos' });
